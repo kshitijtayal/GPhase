@@ -7,6 +7,6 @@ GPhase_Parameter.ipynb - Calculation of Model Parameters used by GPhase, namely 
 
 Minheap.py - Min Heap implementation for maintaining top-k largest solutions. This file is used by GPhase.py and GPhase_LOOC.py.
 
-GPhase_LOOC.py - GPhase implementation for leave-one-out cross-validation (LOOCV) where known set of A<sup>n</sup>
+GPhase_LOOC.py - GPhase implementation for leave-one-out cross-validation (LOOCV) where known set of A<sub>n</sub>
 
 GPhase.py
