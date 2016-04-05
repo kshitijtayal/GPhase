@@ -363,9 +363,9 @@ def Computation(hap_range,haplotypeMatrix, dictAccuracy ) :
             
             no_of_switch = min(NewSwitcherror(inferSolAmbigious,hap1sol),NewSwitcherror(inferSolAmbigious,hap2sol))
             
-            no_of_match = max(matchscore(finalSolution,haplotypeMatrix[value]),matchscore(finalSolution,haplotypeMatrix[value+1])) - len(knownPosition)
+            no_of_match = max(matchscore(inferSolAmbigious,hap1sol),matchscore(inferSolAmbigious,hap1sol))
             
-            no_of_mismatch = min(mismatchscore(finalSolution,haplotypeMatrix[value]),mismatchscore(finalSolution,haplotypeMatrix[value+1]))
+            no_of_mismatch = min(mismatchscore(inferSolAmbigious,hap1sol),mismatchscore(inferSolAmbigious,hap1sol))
             
             dictAccuracy[value] = [len(ambiguousPosition),no_of_match,no_of_switch,no_of_mismatch]
     
