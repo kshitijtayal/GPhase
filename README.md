@@ -7,6 +7,6 @@ GPhase_Parameter.ipynb - Calculation of Model Parameters used by GPhase, namely 
 
 Minheap.py - Min Heap implementation for maintaining top-k largest solutions. This file is used by GPhase.py and GPhase_LOOC.py.
 
-GPhase_LOOC.py - GPhase implementation for leave-one-out cross-validation (LOOCV) where known set of A<sub>n</sub> is created by including all haplotypes except one pair and we infer the constituent haplotype from the combined genotype of remaining pair. Usage: GPhase_LOOC.py <arg1> <arg2> . Collection of haplotypes is specified as Arg1 as a comma separated file where each row contains a haplotype, each consisting of l loci.  
+GPhase_LOOC.py - GPhase implementation for leave-one-out cross-validation (LOOCV) where known set of A<sub>n</sub> is created by including all haplotypes except one pair and we infer the constituent haplotype from the combined genotype of remaining pair. Usage: GPhase_LOOC.py \<arg1\> \<arg2\> . Collection of haplotypes is specified as Arg1 in a comma separated file where each row contains a haplotype, each consisting of l loci.  
 
 GPhase.py
