@@ -16,6 +16,6 @@ GPhase is primarily a tool for inferring haplotypes from its corresponding SNP g
 
 -------------------------
 
-If you experience any problem with GPhase or want to ask a question, Please mail it to kshitij@atc.tcs.com and i will be happy to answer them.
+If you experience any problem with GPhase or want to ask a question, please feel free to contact me at kshitij@atc.tcs.com and i will be happy to answer them.
 
 
