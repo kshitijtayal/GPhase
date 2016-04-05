@@ -146,6 +146,12 @@ def list_split(listsize, splitsize):
                    
           return splitrange
 
+def Complement(x):
+    if x == 0:
+        return 1
+    else : return 0
+
+
 def matchscore(first_word, second_word):
     score = 0
     if len(first_word)!=len(second_word):
@@ -343,6 +349,7 @@ def Computation(hap_range,haplotypeMatrix,haplotype_TestMatrix,dictAccuracy) :
             dictColumnPosition = {}
             ambiguousPosition = [x for x in range(len(partialSolution))if partialSolution[x] == '']  # ambiguous position in array,
 	    if len(ambiguousPosition) <=1:
+		dictAccuracy[value] = [hapwoutDot1,hapwoutDot2]
 		continue
             knownPosition = [x for x in range(len(partialSolution))if partialSolution[x] != '']  # ambiguous position in array,
             partialAmbiguousArrayNoS = trainHaplotype[:,ambiguousPosition]
@@ -363,21 +370,18 @@ def Computation(hap_range,haplotypeMatrix,haplotype_TestMatrix,dictAccuracy) :
             
             #print dictColumnPosition
             finalSolution = probPartialHaplotype(partialSolutionwithoutSpace,reaarangedArray,dictColumnPosition)
-       
+       	    #print finalSolution
+	    complementfinalSolution = []
+            #print len(ambiguousPosition)
+	    #print ambiguousPosition
+	    for i in range(len(finalSolution)): 
+		if i in ambiguousPosition:
+			complementfinalSolution.append(Complement(finalSolution[i]))
+		else : complementfinalSolution.append(finalSolution[i])
+	    #print complementfinalSolution	
+		
             
-            inferSolAmbigious = [ finalSolution[i] for i in ambiguousPosition]
-            
-	    hap1sol = [ hapwoutDot1[i] for i in ambiguousPosition]   #Real ambiguous position sol1 for switch-error
-            hap2sol = [ hapwoutDot2[i] for i in ambiguousPosition]   #Real ambiguous position sol2 for switch-error
-            
-            
-            no_of_switch = min(NewSwitcherror(inferSolAmbigious,hap1sol),NewSwitcherror(inferSolAmbigious,hap2sol))
-            
-            no_of_match = max(matchscore(inferSolAmbigious,hap1sol),matchscore(inferSolAmbigious,hap2sol))
-            
-            no_of_mismatch = min(mismatchscore(inferSolAmbigious,hap1sol),mismatchscore(inferSolAmbigious,hap2sol))
-            
-            dictAccuracy[value] = [len(ambiguousPosition),no_of_match,no_of_switch,no_of_mismatch]
+            dictAccuracy[value] = [np.asarray(finalSolution),np.asarray(complementfinalSolution)]
     
 
 
@@ -394,7 +398,7 @@ def main(haplotypeMatrix,haplotype_TestMatrix):
         #for item in list_split(haplotype_TestMatrix.shape[0],4): 
         #	print 'range of haplotype given to each thread: ' ,item
         
-        for item in list_split(haplotype_TestMatrix.shape[0],arg3):                      #Specify number of thread
+        for item in list_split(haplotype_TestMatrix.shape[0],arg4):                      #Specify number of thread
             n = multiprocessing.Process(target=Computation, args=(item,haplotypeMatrix,haplotype_TestMatrix, dictAccuracy))   # multiprocessing 
             nprocs.append(n)
             n.start()
@@ -402,22 +406,22 @@ def main(haplotypeMatrix,haplotype_TestMatrix):
         for i in nprocs:   
              i.join()        # waiting for all the process to finish
         
-        if     bool(dictAccuracy) == False:
-                 print        
-        else : 
-		#print dictAccuracy	
-		print 'Switch Accuracy is : ', SwitchAccuracy(dictAccuracy)
-        	print 'Accuracy is : ', NewAccuracy(dictAccuracy)
-        
-    
+
+        a = []        
+	for key in dictAccuracy.keys():
+		for element in dictAccuracy[key]:
+    			a.append(element)
+        np.savetxt(arg3, a, delimiter=",", fmt="%d")
+
 if __name__ == '__main__':
     
     try:
         arg1 = sys.argv[1]
 	arg2 = sys.argv[2]
-	arg3 = int(sys.argv[3])
+	arg3 = sys.argv[3]
+	arg4 = int(sys.argv[4])
     except IndexError:
-        print "Usage: GPhase.py <arg1> <arg2> <arg3>"
+        print "Usage: GPhase.py <arg1> <arg2> <arg3><arg4>"
         sys.exit(1)
   
     df=pd.read_csv(arg1, sep=',',header=None)    #get training haplotype file
@@ -425,7 +429,8 @@ if __name__ == '__main__':
     csv = np.genfromtxt (arg2, delimiter=",",dtype=int) #test
     haplotype_TestMatrix = copy(csv)
     haplotype_TestMatrix[csv==-1] = 0  # insert 0 for missing values
-    global F00l1,F01l1,F00l2,F01l2
+    global F00l1,F01l1,F00l2,F01l2 
+    print haplotypeMatrix.shape[0]
     F00l1,F01l1,F00l2,F01l2 = prob(haplotypeMatrix.shape[0])
     if haplotypeMatrix.shape[1] == haplotype_TestMatrix.shape[1] and haplotype_TestMatrix.shape[0] > 1: # Number of Markers should be same for test and train data
     	main(haplotypeMatrix,haplotype_TestMatrix)
