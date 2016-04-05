@@ -18,5 +18,4 @@ GPhase is primarily a tool for inferring haplotypes from its corresponding SNP g
 
 If you experience any problem with GPhase or want to ask a question, please feel free to contact me at kshitij@atc.tcs.com and i will be happy to answer them.
 
-Disclaimer:
-THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW, EXCEPT WHEN OTHERWISE STATED IN WRITING. THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+Disclaimer:There Is No Warranty For The Program, To The Extent Permitted By Applicable Law, Except When Otherwise Stated In Writing. The Copyright Holders And/Or Other Parties Provide The Program “As Is” Without Warranty Of Any Kind, Either Expressed Or Implied, Including, But Not Limited To, The Implied Warranties Of Merchantability And Fitness For A Particular Purpose. The Entire Risk As To The Quality And Performance Of The Program Is With You. Should The Program Prove Defective, You Assume The Cost Of All Necessary Servicing, Repair Or Correction.
