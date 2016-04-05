@@ -425,8 +425,7 @@ if __name__ == '__main__':
     csv = np.genfromtxt (arg2, delimiter=",",dtype=int) #test
     haplotype_TestMatrix = copy(csv)
     haplotype_TestMatrix[csv==-1] = 0  # insert 0 for missing values
-    global F00l1,F01l1,F00l2,F01l2 
-    print haplotypeMatrix.shape[0]
+    global F00l1,F01l1,F00l2,F01l2
     F00l1,F01l1,F00l2,F01l2 = prob(haplotypeMatrix.shape[0])
     if haplotypeMatrix.shape[1] == haplotype_TestMatrix.shape[1] and haplotype_TestMatrix.shape[0] > 1: # Number of Markers should be same for test and train data
     	main(haplotypeMatrix,haplotype_TestMatrix)
