@@ -363,9 +363,9 @@ def Computation(hap_range,haplotypeMatrix, dictAccuracy ) :
             
             no_of_switch = min(NewSwitcherror(inferSolAmbigious,hap1sol),NewSwitcherror(inferSolAmbigious,hap2sol))
             
-            no_of_match = max(matchscore(inferSolAmbigious,hap1sol),matchscore(inferSolAmbigious,hap1sol))
+            no_of_match = max(matchscore(inferSolAmbigious,hap1sol),matchscore(inferSolAmbigious,hap2sol))
             
-            no_of_mismatch = min(mismatchscore(inferSolAmbigious,hap1sol),mismatchscore(inferSolAmbigious,hap1sol))
+            no_of_mismatch = min(mismatchscore(inferSolAmbigious,hap1sol),mismatchscore(inferSolAmbigious,hap2sol))
             
             dictAccuracy[value] = [len(ambiguousPosition),no_of_match,no_of_switch,no_of_mismatch]
     
@@ -409,7 +409,7 @@ if __name__ == '__main__':
         sys.exit(1)
     df=pd.read_csv(arg1, sep=',',header=None)    #get haplotype file
     haplotypeMatrix = df.as_matrix()
-    haplotypeMatrix = haplotypeMatrix[0:100,0:100]
+    #haplotypeMatrix = haplotypeMatrix[0:100,0:100]
     global F00l1,F01l1,F00l2,F01l2 
     F00l1,F01l1,F00l2,F01l2 = prob(haplotypeMatrix.shape[0])
     main(haplotypeMatrix)
